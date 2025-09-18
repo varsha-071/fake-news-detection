@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-newspaper"></i>
+                    <h1>Fake News Detector</h1>
+                </div>
+                <div class="tagline">
+                    <p>Identify misinformation and verify news sources</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="dashboard">
+            <div class="card analyzer-card">
+                <div class="card-header">
+                    <h2 class="card-title">Analyze News Article</h2>
+                </div>
+                <form id="newsForm">
+                    <div class="form-group">
+                        <label for="newsTitle">Article Title</label>
+                        <input type="text" id="newsTitle" class="form-control" placeholder="Enter the article title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="newsContent">Article Content</label>
+                        <textarea id="newsContent" class="form-control" rows="6" placeholder="Paste the article content here for analysis" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="newsSource">Source URL (optional)</label>
+                        <input type="url" id="newsSource" class="form-control" placeholder="https://example.com/article">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i> Analyze Article
+                        </button>
+                        <button type="button" id="clearBtn" class="btn btn-secondary">
+                            <i class="fas fa-eraser"></i> Clear
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card result-card" id="resultCard" style="display: none;">
+                <div class="card-header">
+                    <h2 class="card-title">Analysis Result</h2>
+                </div>
+                <div class="result-container">
+                    <div class="result-verdict" id="resultVerdict">
+                        <!-- Result will be inserted here -->
+                    </div>
+                    <div class="result-details">
+                        <div class="confidence-meter">
+                            <div class="confidence-label">Confidence Level</div>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" id="confidenceFill"></div>
+                            </div>
+                            <div class="confidence-value" id="confidenceValue">0%</div>
+                        </div>
+                        <div class="result-factors" id="resultFactors">
+                            <!-- Factors will be inserted here -->
+                        </div>
+                    </div>
+                    <div class="result-actions">
+                        <button id="saveResultBtn" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Result
+                        </button>
+                        <button id="shareResultBtn" class="btn btn-secondary">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card tips-card">
+                <div class="card-header">
+                    <h2 class="card-title">How to Spot Fake News</h2>
+                </div>
+                <div class="tips-container">
+                    <div class="tip-item">
+                        <div class="tip-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Check the Source</h3>
+                            <p>Verify the credibility of the news organization and author. Look for established, reputable sources.</p>
+                        </div>
+                    </div>
+                    <div class="tip-item">
+                        <div class="tip-icon">
+                            <i class="fas fa-quote-right"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Read Beyond the Headline</h3>
+                            <p>Sensational headlines can be misleading. Read the full article to understand the context.</p>
+                        </div>
+                    </div>
+                    <div class="tip-item">
+                        <div class="tip-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Verify with Other Sources</h3>
+                            <p>Cross-check the information with multiple reliable news outlets to confirm its accuracy.</p>
+                        </div>
+                    </div>
+                    <div class="tip-item">
+                        <div class="tip-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Watch for Emotional Language</h3>
+                            <p>Fake news often uses strong emotional language to provoke reactions rather than inform.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card history-card">
+                <div class="card-header">
+                    <h2 class="card-title">Analysis History</h2>
+                </div>
+                <div class="history-container" id="historyContainer">
+                    <div class="empty-state">
+                        <i class="fas fa-history"></i>
+                        <p>No analysis history yet. Analyze an article to see it here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>Fake News Detector</h3>
+                </div>
+                <div class="footer-links">
+                    <a href="#"><i class="fas fa-info-circle"></i> About</a>
+                    <a href="#"><i class="fas fa-question-circle"></i> How It Works</a>
+                    <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2023 Fake News Detector. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="notification" class="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notificationMessage">Operation successful!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
